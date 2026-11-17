@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/lockup-dark.svg">
-  <img alt="urzua" src="assets/lockup-light.svg" width="300">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/urzuahq/.github/main/profile/assets/lockup-dark.svg">
+  <img alt="urzua" src="https://raw.githubusercontent.com/urzuahq/.github/main/profile/assets/lockup-light.svg" width="300">
 </picture>
 
 ### System 0 for agents
