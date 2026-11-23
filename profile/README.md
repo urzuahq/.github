@@ -16,7 +16,7 @@ People decide in records. A record says what was decided, who accepted it and wh
 | | What it is | Project |
 |---|---|---|
 | **Governance plane** | The records and their engine. People decide here: they read records and accept them. | [urzua](https://github.com/urzuahq/urzua) |
-| **Control plane** | Will enforce what the records and the risk classes say on every change, and return one verdict. In development. | [garita](https://github.com/urzuahq/garita) |
+| **Control plane** | Will enforce what the records and the risk classes say on every change, and return one verdict. First release out; this part is not built yet. | [garita](https://github.com/urzuahq/garita) |
 | **Systems 0, 1 and 2** | The checks the control plane runs. | See below |
 
 ## Three systems
@@ -33,7 +33,7 @@ Take the claim an agent makes most often: "this is done, and here is the test."
 
 Ask in that order. Each system hands the next only what it could not settle. System 0 goes first because it decides by rules you wrote down, so its answer is the same on every run. Systems 1 and 2 decide by probability.
 
-Risk is a separate axis from the three systems. A repository declares ahead of time how risky each kind of change is, and that decides which checks the change must pass. Running those checks and returning one verdict is the job of [garita](https://github.com/urzuahq/garita). garita is in development, and its risk classes are designed but not built.
+Risk is a separate axis from the three systems. A repository declares ahead of time how risky each kind of change is, and that decides which checks the change must pass. Running those checks and returning one verdict is the job of [garita](https://github.com/urzuahq/garita). garita has a first release, and its risk classes are designed but not built.
 
 Today urzua checks that the evidence a record names exists and is linked. It does not check that it is the right evidence. That is a System 1 question, and no tool here answers it yet.
 
@@ -58,8 +58,8 @@ curl -fsSL --proto '=https' --tlsv1.2 "https://raw.githubusercontent.com/urzuahq
 |---|---|---|
 | [urzua](https://github.com/urzuahq/urzua) | The governance engine for coding agents: decisions, who accepted them and their evidence are records in your repository, checked against the rules you declared, with the same answer for the same records. It checks that a change's evidence exists and is linked, not that the code is right. It is also a System 0 tool. | Released, before 1.0 |
 | [decision-agent-kit](https://github.com/urzuahq/decision-agent-kit) | A System 1 tool: lets a coding agent's harness ask a decision model about the session, starting with whether a turn is really done. | Works in Claude Code and Codex with SubQ Snap, in shadow mode by default. No release yet |
-| [garita](https://github.com/urzuahq/garita) | The control plane: a deterministic gate for agent-authored change. It runs the checks a change must pass for its declared risk, within a budget, and returns one verdict to agents, git hooks and CI. urzua is planned as its first native tool. | In development: RFCs in draft, no release yet |
-| [agent-cli-kit](https://github.com/urzuahq/agent-cli-kit) | The output contract for the urzuahq tools: JSON Schemas for what a command prints and returns, so an agent or garita can read any tool without a parser for each. | Release candidate `v1.0.0-rc.1` |
+| [garita](https://github.com/urzuahq/garita) | The control plane: a deterministic gate for agent-authored change. It runs the checks a change must pass for its declared risk, within a budget, and returns one verdict to agents, git hooks and CI. urzua is planned as its first native tool. | First release `v0.1.1`; RFCs in draft |
+| [agent-cli-kit](https://github.com/urzuahq/agent-cli-kit) | The output contract for the urzuahq tools: JSON Schemas for what a command prints and returns, so an agent or garita can read any tool without a parser for each. | Released `v1.0.0`; the receipt schema is still a draft |
 
 ## What we hold to
 
