@@ -17,11 +17,13 @@ Take the claim an agent makes most often: "this is done, and here is the test."
 
 | | Question | Answered by | Time |
 |---|---|---|---|
-| **System 0** | Does the test exist, and is it linked properly? | Deterministic checks: [urzua](https://github.com/urzuahq/urzua) | milliseconds |
-| **System 1** | Is this the right test? Does it test what the task says? | A probability from a decision model | about a second |
-| **System 2** | What does this test actually do? | Reasoning by an LLM | seconds to minutes |
+| **System 0** | Does the test exist, and is it linked properly? | Fast deterministic compute: [urzua](https://github.com/urzuahq/urzua), alongside linters, type checkers and build tools | milliseconds |
+| **System 1** | Is this the right test? Does it test what the task says? | Tools built on decision models: [decision-agent-kit](https://github.com/urzuahq/decision-agent-kit) | about a second |
+| **System 2** | What does this test actually do? | LLM inference | seconds to minutes |
 
-Ask in that order. Each system hands the next only what it could not settle. System 0 goes first because its answer is the same on every run.
+Ask in that order. Each system hands the next only what it could not settle. System 0 goes first because it decides by rules you wrote down, so its answer is the same on every run. Systems 1 and 2 decide by probability.
+
+How far up a change has to go depends on its risk, which a repository declares ahead of time. Running the checks a change's risk calls for, and returning one verdict, is the job of [garita](https://github.com/urzuahq/garita), which is being designed.
 
 ## Start
 
@@ -40,10 +42,12 @@ curl -fsSL --proto '=https' --tlsv1.2 "https://raw.githubusercontent.com/urzuahq
 
 ## Projects
 
-| Project | What it checks | When |
+| Project | What it is | State |
 |---|---|---|
-| [urzua](https://github.com/urzuahq/urzua) | What the records say: this was decided, this is done, this is the evidence. A record engine configured entirely by the repository that uses it. Decision-model checks are on the way for the questions a rule cannot settle. | Every commit and pull request |
-| [decision-agent-kit](https://github.com/urzuahq/decision-agent-kit) | What the agent says in the session: it works, it is finished. Scored by a decision model. | The end of every turn |
+| [urzua](https://github.com/urzuahq/urzua) | A System 0 tool: a record engine. A repository declares its record types, what counts as evidence and who may decide, and urzua checks every change against those rules. | Released |
+| [decision-agent-kit](https://github.com/urzuahq/decision-agent-kit) | A System 1 tool: lets a coding agent's harness ask a decision model about the session, starting with whether a turn is really done. | Works in Claude Code with SubQ Snap, in shadow mode by default |
+| [garita](https://github.com/urzuahq/garita) | The control plane: a deterministic gate for agent-authored change. It runs the checks a change must pass for its declared risk, within a budget, and returns one verdict to agents, git hooks and CI. urzua is its first native tool. | In design: draft RFCs, nothing built yet |
+| [agent-cli-kit](https://github.com/urzuahq/agent-cli-kit) | The output contract the urzuahq tools follow: JSON Schemas for what a command prints and returns, so an agent or a control plane can read any tool without a parser for each. | Release candidate `v1.0.0-rc.1` |
 
 ## What we hold to
 
