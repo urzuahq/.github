@@ -49,7 +49,7 @@ Or install urzua yourself:
 
 ```sh
 tag=$(gh release view --repo urzuahq/urzua --json tagName --jq .tagName)
-curl -fsSL --proto '=https' --tlsv1.2 "https://raw.githubusercontent.com/urzuahq/urzua/$tag/scripts/install.sh" | sh -s -- --version "$tag"
+curl -fsSL --proto '=https' --tlsv1.2 -o urzua-install.sh "https://raw.githubusercontent.com/urzuahq/urzua/$tag/scripts/install.sh" && sh urzua-install.sh --version "$tag"
 ```
 
 ## Projects
