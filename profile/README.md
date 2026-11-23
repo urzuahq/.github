@@ -56,7 +56,7 @@ curl -fsSL --proto '=https' --tlsv1.2 "https://raw.githubusercontent.com/urzuahq
 
 | Project | What it is | State |
 |---|---|---|
-| [urzua](https://github.com/urzuahq/urzua) | The engine of the governance plane. A repository declares its record types, what counts as evidence and who may decide, and urzua checks every change against those rules. It is also a System 0 tool. | Released, before 1.0 |
+| [urzua](https://github.com/urzuahq/urzua) | The governance engine for coding agents: decisions, who accepted them and their evidence are records in your repository, checked against the rules you declared, with the same answer for the same records. It checks that a change's evidence exists and is linked, not that the code is right. It is the engine of the governance plane, and also a System 0 tool. | Released, before 1.0 |
 | [decision-agent-kit](https://github.com/urzuahq/decision-agent-kit) | A System 1 tool: lets a coding agent's harness ask a decision model about the session, starting with whether a turn is really done. | Works in Claude Code and Codex with SubQ Snap, in shadow mode by default. No release yet |
 | [garita](https://github.com/urzuahq/garita) | The control plane: a deterministic gate for agent-authored change. It runs the checks a change must pass for its declared risk, within a budget, and returns one verdict to agents, git hooks and CI. urzua is planned as its first native tool. | In development: RFCs in draft, no release yet |
 | [agent-cli-kit](https://github.com/urzuahq/agent-cli-kit) | The output contract for the urzuahq tools: JSON Schemas for what a command prints and returns, so an agent or garita can read any tool without a parser for each. | Release candidate `v1.0.0-rc.1` |
