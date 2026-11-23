@@ -3,7 +3,7 @@
   <img alt="urzua" src="https://raw.githubusercontent.com/urzuahq/.github/main/profile/assets/lockup-light.svg" width="300">
 </picture>
 
-### System 0 for agents
+### System 0 for coding agents
 
 **Our mission is to make agent work something you can rely on without reading all of it.**
 
